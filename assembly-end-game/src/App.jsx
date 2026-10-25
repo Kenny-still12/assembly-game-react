@@ -1,6 +1,6 @@
 export default function App() {
   return (
-    <main>
+    <main className="p-8 flex flex-col items-center w-full">
       <header className="flex flex-col gap-5 items-center">
         <h1 className="text-xl font-bold text-neutral-50 mt-5">Assembly: Endgame</h1>
         <p className="text-sm text-neutral-500 text-center">
@@ -8,6 +8,11 @@ export default function App() {
           world safe from Assebly!
         </p>
       </header>
+      <section className="flex flex-col items-center text-white mt-5 bg-green-500 py-1.5 px-1 my-5 rounded-xl min-w-1/3">
+        {/* hardcorded for now */}
+        <h2 className="font-bold text-xl mb-3">You Win!</h2>
+        <p>Well Done!</p>
+      </section>
     </main>
   )
 }
