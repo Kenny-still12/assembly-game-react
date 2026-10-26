@@ -1,4 +1,18 @@
+import { languages } from "./languages.js"
+
 export default function App() {
+
+  function renderLang() {
+    return languages.map((lang) => (
+      <div
+        key={lang.name}
+        style={{ backgroundColor: `${lang.backgroundColor}`, color: `${lang.color}` }}
+        className="px-0.5 py-0.5 rounded-md"
+      >
+        <p>{lang.name}</p>
+      </div>
+    ))
+  }
   return (
     <main className="p-8 flex flex-col items-center w-full">
       <header className="flex flex-col gap-5 items-center">
@@ -12,6 +26,9 @@ export default function App() {
         {/* hardcorded for now */}
         <h2 className="font-bold text-xl mb-3">You Win!</h2>
         <p>Well Done!</p>
+      </section>
+      <section className="flex flex-wrap max-w-96 justify-center gap-1">
+        {renderLang()}
       </section>
     </main>
   )
