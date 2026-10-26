@@ -1,6 +1,19 @@
+import { useState } from "react"
 import { languages } from "./languages.js"
 
 export default function App() {
+  // hardcord for now
+  const [currentWord, setCurrentWord] = useState("React")
+
+  function renderWords() {
+    const wordArray = currentWord.split('');
+
+    return wordArray.map((char) =>
+    (
+      <span key={crypto.randomUUID}>{char.toUpperCase()}</span>
+    )
+    )
+  }
 
   function renderLang() {
     return languages.map((lang) => (
@@ -29,6 +42,9 @@ export default function App() {
       </section>
       <section className="flex flex-wrap max-w-96 justify-center gap-1">
         {renderLang()}
+      </section>
+      <section>
+        {renderWords()}
       </section>
     </main>
   )
