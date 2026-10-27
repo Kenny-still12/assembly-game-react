@@ -13,7 +13,9 @@ export default function App() {
   }, [guessedWord])
 
   function addGuessedWord(char) {
-    setGuessedWord(prev => [...prev, char])
+    setGuessedWord(prev => {
+      return prev.includes(char) ? prev : [...prev, char]
+    })
   }
 
 
