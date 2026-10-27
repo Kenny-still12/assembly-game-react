@@ -17,7 +17,7 @@ export default function App() {
     (
       <span
         key={index}
-        className="px-1 py-0.5 font-semibold text-3xl text-white bg-neutral-600 border-b-2 border-b-neutral-100"
+        className="px-2.5 py-1.5 font-semibold text-3xl text-white bg-neutral-600 border-b-2 border-b-neutral-100"
       >{char.toUpperCase()}</span>
     )
     )
@@ -51,21 +51,21 @@ export default function App() {
           world safe from Assebly!
         </p>
       </header>
-      <section className="flex flex-col items-center text-white mt-5 bg-green-500 py-1.5 px-1 my-5 rounded-xl min-w-1/3">
+      <section className="flex flex-col items-center text-white mt-10 bg-green-500 py-1.5 px-1  rounded-xl min-w-1/3">
         {/* hardcorded for now */}
         <h2 className="font-bold text-xl mb-3">You Win!</h2>
         <p>Well Done!</p>
       </section>
-      <section className="flex flex-wrap max-w-96 justify-center gap-1">
+      <section className="flex flex-wrap max-w-96 justify-center gap-1 mt-10">
         {renderLang()}
       </section>
-      <section className="mt-5 flex gap-0.5">
+      <section className="mt-10 flex gap-0.5">
         {renderWords()}
       </section>
       <section className="mt-10 flex flex-wrap justify-center gap-1">
         {renderAlphabet}
       </section>
-      <section className="mt-5 w-full flex justify-center">
+      <section className="mt-10 w-full flex justify-center">
         <button className="text-2xl bg-sky-300 hover:bg-sky-400 transition-colors cursor-pointer px-1.5 py-2.5 rounded-md w-1/2"> New Game</button>
       </section>
     </main>
