@@ -10,7 +10,10 @@ export default function App() {
 
     return wordArray.map((char) =>
     (
-      <span key={crypto.randomUUID}>{char.toUpperCase()}</span>
+      <span
+        key={crypto.randomUUID}
+        className="px-1 py-0.5 font-semibold text-3xl text-white bg-neutral-600 border-b-2 border-b-neutral-100"
+      >{char.toUpperCase()}</span>
     )
     )
   }
@@ -43,7 +46,7 @@ export default function App() {
       <section className="flex flex-wrap max-w-96 justify-center gap-1">
         {renderLang()}
       </section>
-      <section>
+      <section className="mt-7 flex gap-0.5">
         {renderWords()}
       </section>
     </main>
