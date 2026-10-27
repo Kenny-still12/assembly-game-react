@@ -32,8 +32,8 @@ export default function App() {
   return (
     <main className="p-8 flex flex-col items-center w-full">
       <header className="flex flex-col gap-5 items-center">
-        <h1 className="text-xl font-bold text-neutral-50 mt-5">Assembly: Endgame</h1>
-        <p className="text-sm text-neutral-500 text-center">
+        <h1 className="text-2xl font-bold text-neutral-50 mt-5">Assembly: Endgame</h1>
+        <p className="text-md text-neutral-500 text-center">
           Guess theword within 8 attempts to keep the programming
           world safe from Assebly!
         </p>
@@ -46,7 +46,7 @@ export default function App() {
       <section className="flex flex-wrap max-w-96 justify-center gap-1">
         {renderLang()}
       </section>
-      <section className="mt-7 flex gap-0.5">
+      <section className="mt-5 flex gap-0.5">
         {renderWords()}
       </section>
     </main>
