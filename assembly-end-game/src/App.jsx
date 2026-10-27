@@ -3,15 +3,20 @@ import { languages } from "./languages.js"
 
 export default function App() {
   // hardcord for now
-  const [currentWord, setCurrentWord] = useState("React")
+  const [currentWord, setCurrentWord] = useState("react")
+
+  const alphabet = "abcdefghijklmnopqrstuvwxyz"
+
+
+
 
   function renderWords() {
     const wordArray = currentWord.split('');
 
-    return wordArray.map((char) =>
+    return wordArray.map((char, index) =>
     (
       <span
-        key={crypto.randomUUID}
+        key={index}
         className="px-1 py-0.5 font-semibold text-3xl text-white bg-neutral-600 border-b-2 border-b-neutral-100"
       >{char.toUpperCase()}</span>
     )
@@ -29,6 +34,14 @@ export default function App() {
       </div>
     ))
   }
+
+  const renderAlphabet = alphabet.split('').map((letter, index) => (
+    <button
+      key={index}
+      className="bg-amber-400 px-4 py-2.5 rounded-md text-sm font-semibold border border-white cursor-pointer"
+    >{letter.toUpperCase()}</button>
+  ))
+
   return (
     <main className="p-8 flex flex-col items-center w-full">
       <header className="flex flex-col gap-5 items-center">
@@ -48,6 +61,9 @@ export default function App() {
       </section>
       <section className="mt-5 flex gap-0.5">
         {renderWords()}
+      </section>
+      <section className="mt-10 flex flex-wrap justify-center gap-1">
+        {renderAlphabet}
       </section>
     </main>
   )
