@@ -65,6 +65,9 @@ export default function App() {
       <section className="mt-10 flex flex-wrap justify-center gap-1">
         {renderAlphabet}
       </section>
+      <section className="mt-5 w-full flex justify-center">
+        <button className="text-2xl bg-sky-300 hover:bg-sky-400 transition-colors cursor-pointer px-1.5 py-2.5 rounded-md w-1/2"> New Game</button>
+      </section>
     </main>
   )
 }
