@@ -1,13 +1,20 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { languages } from "./languages.js"
 
 export default function App() {
   // hardcord for now
   const [currentWord, setCurrentWord] = useState("react")
+  const [guessedWord, setGuessedWord] = useState([])
 
   const alphabet = "abcdefghijklmnopqrstuvwxyz"
 
+  useEffect(() => {
+    console.log(guessedWord)
+  }, [guessedWord])
 
+  function addGuessedWord(char) {
+    setGuessedWord(prev => [...prev, char])
+  }
 
 
   function renderWords() {
@@ -39,6 +46,8 @@ export default function App() {
     <button
       key={index}
       className="bg-amber-400 px-4 py-2.5 rounded-md text-sm font-semibold border border-white cursor-pointer"
+      value={letter}
+      onClick={(e) => addGuessedWord(e.target.value)}
     >{letter.toUpperCase()}</button>
   ))
 
