@@ -62,7 +62,7 @@ export default function App() {
           world safe from Assebly!
         </p>
       </header>
-      <section className="flex flex-col items-center text-white mt-10 bg-green-500 py-1.5 px-1  rounded-xl min-w-1/3">
+      <section className="flex flex-col items-center text-white mt-10 bg-green-500 py-1.5 px-1  rounded-xl min-w-1/2">
         {/* hardcorded for now */}
         <h2 className="font-bold text-xl mb-3">You Win!</h2>
         <p>Well Done!</p>
@@ -73,7 +73,7 @@ export default function App() {
       <section className="mt-10 flex gap-0.5">
         {renderWords()}
       </section>
-      <section className="mt-10 flex flex-wrap justify-center gap-1">
+      <section className="mt-10 flex flex-wrap justify-center gap-1 max-w-1/2">
         {renderAlphabet}
       </section>
       <section className="mt-10 w-full flex justify-center">
