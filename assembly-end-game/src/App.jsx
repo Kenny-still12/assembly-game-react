@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { languages } from "./languages.js"
+import clsx from "clsx"
 
 export default function App() {
   // hardcord for now
@@ -44,14 +45,23 @@ export default function App() {
     ))
   }
 
-  const renderAlphabet = alphabet.split('').map((letter, index) => (
-    <button
+  const renderAlphabet = alphabet.split('').map((letter, index) => {
+    const isGuessed = guessedWord.includes(letter)
+    const isCorrect = isGuessed && currentWord.includes(letter)
+    const isWrong = isGuessed && !currentWord.includes(letter)
+
+    return (<button
       key={index}
-      className="bg-amber-400 px-4 py-2.5 rounded-md text-sm font-semibold border border-white cursor-pointer"
+      className={clsx("bg-amber-400 px-4 py-2.5 rounded-md text-sm font-semibold border border-white cursor-pointer transition-colors",
+        {
+          "bg-green-500": isCorrect,
+          "bg-red-500": isWrong
+        })}
       value={letter}
       onClick={(e) => addGuessedWord(e.target.value)}
     >{letter.toUpperCase()}</button>
-  ))
+    )
+  })
 
   return (
     <main className="p-8 flex flex-col items-center w-full">
