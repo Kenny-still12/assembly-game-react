@@ -40,17 +40,24 @@ export default function App() {
     )
   }
 
-  function renderLang() {
-    return languages.map((lang) => (
+  const renderLang = languages.map((lang, index) => {
+    const isLanguageLost = index < wrongGuessedWord;
+
+    return (
       <div
         key={lang.name}
         style={{ backgroundColor: `${lang.backgroundColor}`, color: `${lang.color}` }}
-        className="px-0.5 py-0.5 rounded-md"
+        className={clsx("relative flex items-center justify-center px-0.5 py-0.5 rounded-md",
+          {
+            "opacity-40": isLanguageLost
+          })}
       >
+        <span className="absolute opacity-100">{isLanguageLost ? "💀" : ""}</span>
         <p>{lang.name}</p>
       </div>
-    ))
-  }
+    )
+  })
+
 
   const renderAlphabet = alphabet.split('').map((letter, index) => {
     const isGuessed = guessedWord.includes(letter)
@@ -85,7 +92,7 @@ export default function App() {
         <p>Well Done!</p>
       </section>
       <section className="flex flex-wrap max-w-96 justify-center gap-1 mt-10">
-        {renderLang()}
+        {renderLang}
       </section>
       <section className="mt-10 flex gap-0.5">
         {renderWords()}
