@@ -4,9 +4,15 @@ import clsx from "clsx"
 
 export default function App() {
   // hardcord for now
+  // state
   const [currentWord, setCurrentWord] = useState("react")
   const [guessedWord, setGuessedWord] = useState([])
 
+  // derived variable
+  const wrongGuessedWord = guessedWord.filter((letter) => !currentWord.includes(letter)).length
+  console.log(wrongGuessedWord)
+
+  // static variable
   const alphabet = "abcdefghijklmnopqrstuvwxyz"
 
   useEffect(() => {
