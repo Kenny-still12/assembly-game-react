@@ -20,6 +20,7 @@ export default function App() {
   }
 
 
+  // it renders the holder for guessed words
   function renderWords() {
     const wordArray = currentWord.split('');
 
@@ -27,8 +28,8 @@ export default function App() {
     (
       <span
         key={index}
-        className="px-2.5 py-1.5 font-semibold text-3xl text-white bg-neutral-600 border-b-2 border-b-neutral-100"
-      >{char.toUpperCase()}</span>
+        className=" min-w-10 min-h-12.5 px-2.5 py-1.5 font-semibold text-3xl text-white bg-neutral-600 border-b-2 border-b-neutral-100"
+      >{guessedWord.includes(char) ? char.toUpperCase() : ""}</span>
     )
     )
   }
