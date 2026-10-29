@@ -12,6 +12,10 @@ export default function App() {
   const wrongGuessedWord = guessedWord.filter((letter) => !currentWord.includes(letter)).length
   console.log(wrongGuessedWord)
 
+  const isGameWon = currentWord.split("").every(letter => guessedWord.includes(letter));
+  const isGameLost = wrongGuessedWord >= languages.length - 1;
+  const isGameOver = isGameLost || isGameWon
+
   // static variable
   const alphabet = "abcdefghijklmnopqrstuvwxyz"
 
@@ -101,7 +105,7 @@ export default function App() {
         {renderAlphabet}
       </section>
       <section className="mt-10 w-full flex justify-center">
-        <button className="text-2xl bg-sky-300 hover:bg-sky-400 transition-colors cursor-pointer px-1.5 py-2.5 rounded-md w-1/2"> New Game</button>
+        {isGameOver && <button className="text-2xl bg-sky-300 hover:bg-sky-400 transition-colors cursor-pointer px-1.5 py-2.5 rounded-md w-1/2"> New Game</button>}
       </section>
     </main>
   )
