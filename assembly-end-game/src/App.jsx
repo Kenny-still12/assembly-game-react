@@ -19,6 +19,12 @@ export default function App() {
   // static variable
   const alphabet = "abcdefghijklmnopqrstuvwxyz"
 
+  const statusClass = clsx("flex flex-col items-center text-white mt-10 py-1.5 px-1 min-h-20 rounded-xl min-w-1/2", {
+    "bg-green-500": isGameWon,
+    "bg-red-500": isGameLost,
+  })
+
+
   useEffect(() => {
     console.log(guessedWord)
   }, [guessedWord])
@@ -90,11 +96,14 @@ export default function App() {
           world safe from Assebly!
         </p>
       </header>
-      <section className="flex flex-col items-center text-white mt-10 bg-green-500 py-1.5 px-1  rounded-xl min-w-1/2">
-        {/* hardcorded for now */}
-        <h2 className="font-bold text-xl mb-3">You Win!</h2>
-        <p>Well Done!</p>
+
+
+      <section className={statusClass}>
+        <h2 className="font-bold text-xl mb-3">{isGameWon ? "You Win!" : isGameLost ? "You Lost!" : ""}</h2>
+        <p>{isGameWon ? "Well Done!" : isGameLost ? "You lose!, better start learning Assembly!" : ""}</p>
       </section>
+
+
       <section className="flex flex-wrap max-w-96 justify-center gap-1 mt-10">
         {renderLang}
       </section>
