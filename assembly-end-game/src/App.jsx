@@ -121,6 +121,8 @@ export default function App() {
           "opacity-50": isGameOver
         })}
       disabled={isGameOver}
+      aria-disabled={guessedWord.includes(letter)}
+      aria-label={`letter ${letter}`}
       value={letter}
       onClick={(e) => addGuessedWord(e.target.value)}
     >{letter.toUpperCase()}</button>
@@ -138,7 +140,7 @@ export default function App() {
       </header>
 
 
-      <section className={statusClass}>
+      <section className={statusClass} aria-live="polite" role="status">
         {renderStatus()}
       </section>
 
@@ -149,6 +151,11 @@ export default function App() {
       <section className="mt-10 flex gap-0.5">
         {renderWords()}
       </section>
+
+      <section className="sr-only" aria-live="polite" role="status">
+        <p>Current word: {currentWord.split("").map(letter => guessedWord.includes(letter) ? letter : "blank").join(" ")}</p>
+      </section>
+
       <section className="mt-10 flex flex-wrap justify-center gap-1 max-w-1/2">
         {renderAlphabet}
       </section>
