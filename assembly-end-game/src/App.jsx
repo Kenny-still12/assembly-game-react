@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { languages } from "./languages.js"
+import { getFarewellText } from "./utils.js"
 import clsx from "clsx"
 
 export default function App() {
@@ -16,12 +17,17 @@ export default function App() {
   const isGameLost = wrongGuessedWord >= languages.length - 1;
   const isGameOver = isGameLost || isGameWon
 
+  const lastGuessedWord = guessedWord[guessedWord.length - 1];
+  const isLastGuessIncorrect = lastGuessedWord && !currentWord.includes(lastGuessedWord);
+
+
   // static variable
   const alphabet = "abcdefghijklmnopqrstuvwxyz"
 
-  const statusClass = clsx("flex flex-col items-center text-white mt-10 py-1.5 px-1 min-h-20 rounded-xl min-w-1/2", {
+  const statusClass = clsx("flex flex-col items-center justify-center text-white mt-10 py-1.5 px-1 min-h-20 rounded-xl min-w-1/2", {
     "bg-green-500": isGameWon,
     "bg-red-500": isGameLost,
+    "bg-purple-500": isLastGuessIncorrect,
   })
 
 
@@ -35,6 +41,38 @@ export default function App() {
     })
   }
 
+
+  const renderStatus = () => {
+
+    if (!isGameOver && isLastGuessIncorrect) {
+      return (
+        <h1 className="font-bold text-xl mb-3">{getFarewellText(languages[wrongGuessedWord].name)}</h1>
+      )
+    }
+
+    if (!isGameOver) {
+      return null;
+    }
+
+    if (isGameWon) {
+      return (
+        <>
+          <h1 className="font-bold text-xl mb-3"> You win!</h1>
+          <p>well done!</p>
+        </>
+      )
+    }
+
+    if (isGameLost) {
+      return (
+        <>
+          <h1 className="font-bold text-xl mb-3">You lost!</h1>
+          <p>better start learning Assembly!</p>
+        </>
+      )
+
+    }
+  }
 
   // it renders the holder for guessed words
   function renderWords() {
@@ -99,8 +137,7 @@ export default function App() {
 
 
       <section className={statusClass}>
-        <h2 className="font-bold text-xl mb-3">{isGameWon ? "You Win!" : isGameLost ? "You Lost!" : ""}</h2>
-        <p>{isGameWon ? "Well Done!" : isGameLost ? "You lose!, better start learning Assembly!" : ""}</p>
+        {renderStatus()}
       </section>
 
 
