@@ -117,8 +117,10 @@ export default function App() {
       className={clsx("bg-amber-400 px-4 py-2.5 rounded-md text-sm font-semibold border border-white cursor-pointer transition-colors",
         {
           "bg-green-500": isCorrect,
-          "bg-red-500": isWrong
+          "bg-red-500": isWrong,
+          "opacity-50": isGameOver
         })}
+      disabled={isGameOver}
       value={letter}
       onClick={(e) => addGuessedWord(e.target.value)}
     >{letter.toUpperCase()}</button>
@@ -151,7 +153,7 @@ export default function App() {
         {renderAlphabet}
       </section>
       <section className="mt-10 w-full flex justify-center">
-        {isGameOver && <button className="text-2xl bg-sky-300 hover:bg-sky-400 transition-colors cursor-pointer px-1.5 py-2.5 rounded-md w-1/2"> New Game</button>}
+        {isGameOver && <button className="text-2xl font-semibold bg-sky-300 hover:bg-sky-400 transition-colors cursor-pointer px-1.5 py-2.5 rounded-md w-1/2"> New Game</button>}
       </section>
     </main>
   )
