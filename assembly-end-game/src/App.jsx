@@ -10,11 +10,11 @@ export default function App() {
   const [guessedWord, setGuessedWord] = useState([])
 
   // derived variable
+  const numGuessesLeft = languages.length - 1;
   const wrongGuessedWord = guessedWord.filter((letter) => !currentWord.includes(letter)).length
-  console.log(wrongGuessedWord)
 
   const isGameWon = currentWord.split("").every(letter => guessedWord.includes(letter));
-  const isGameLost = wrongGuessedWord >= languages.length - 1;
+  const isGameLost = wrongGuessedWord >= numGuessesLeft;
   const isGameOver = isGameLost || isGameWon
 
   const lastGuessedWord = guessedWord[guessedWord.length - 1];
@@ -153,6 +153,10 @@ export default function App() {
       </section>
 
       <section className="sr-only" aria-live="polite" role="status">
+        <p>
+          {currentWord.includes(lastGuessedWord) ? `Correct! the letter ${lastGuessedWord} is in the word.` : `Wrong, ${lastGuessedWord} is not in the word`}
+          You have {numGuessesLeft} attempts left
+        </p>
         <p>Current word: {currentWord.split("").map(letter => guessedWord.includes(letter) ? letter : "blank").join(" ")}</p>
       </section>
 
