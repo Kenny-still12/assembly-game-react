@@ -46,7 +46,7 @@ export default function App() {
 
     if (!isGameOver && isLastGuessIncorrect) {
       return (
-        <h1 className="font-bold text-xl mb-3">{getFarewellText(languages[wrongGuessedWord].name)}</h1>
+        <h1 className="font-bold text-xl mb-3">{getFarewellText(languages[wrongGuessedWord - 1].name)}</h1>
       )
     }
 
