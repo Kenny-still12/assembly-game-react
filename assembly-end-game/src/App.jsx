@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react"
 import { languages } from "./languages.js"
-import { getFarewellText } from "./utils.js"
+import { getFarewellText, getRandomWord } from "./utils.js"
 import clsx from "clsx"
 
 export default function App() {
-  // hardcord for now
+
   // state
-  const [currentWord, setCurrentWord] = useState("react")
+  const [currentWord, setCurrentWord] = useState(() => getRandomWord())
   const [guessedWord, setGuessedWord] = useState([])
 
   // derived variable
@@ -78,14 +78,23 @@ export default function App() {
   function renderWords() {
     const wordArray = currentWord.split('');
 
-    return wordArray.map((char, index) =>
-    (
-      <span
-        key={index}
-        className=" min-w-10 min-h-12.5 px-2.5 py-1.5 font-semibold text-3xl text-white bg-neutral-600 border-b-2 border-b-neutral-100"
-      >{guessedWord.includes(char) ? char.toUpperCase() : ""}</span>
+    return wordArray.map((char, index) => {
+
+      const shouldRevealWords = isGameOver || guessedWord.includes(char)
+      const className = clsx(" min-w-10 min-h-12.5 px-2.5 py-1.5 font-semibold text-3xl text-center bg-neutral-600 border-b-2 border-b-neutral-100",
+        {
+          "text-red-500": isGameOver && !guessedWord.includes(char),
+          "text-white": guessedWord.includes(char)
+        })
+      return (
+        <span
+          key={index}
+          className={className}
+        >{shouldRevealWords ? char.toUpperCase() : ""}</span>
+      )
+    }
     )
-    )
+
   }
 
   const renderLang = languages.map((lang, index) => {
@@ -129,6 +138,12 @@ export default function App() {
     )
   })
 
+  function newGame() {
+    setCurrentWord(() => getRandomWord())
+    setGuessedWord([])
+  }
+
+
   return (
     <main className="p-8 flex flex-col items-center w-full">
       <header className="flex flex-col gap-5 items-center">
@@ -164,7 +179,11 @@ export default function App() {
         {renderAlphabet}
       </section>
       <section className="mt-10 w-full flex justify-center">
-        {isGameOver && <button className="text-2xl font-semibold bg-sky-300 hover:bg-sky-400 transition-colors cursor-pointer px-1.5 py-2.5 rounded-md w-1/2"> New Game</button>}
+        {isGameOver &&
+          <button
+            className="text-2xl font-semibold bg-sky-300 hover:bg-sky-400 transition-colors cursor-pointer px-1.5 py-2.5 rounded-md w-1/2"
+            onClick={() => newGame()}
+          > New Game</button>}
       </section>
     </main>
   )
